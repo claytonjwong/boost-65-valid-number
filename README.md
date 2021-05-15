@@ -92,7 +92,7 @@ public:
         auto isE = [](auto c) { return c == 'e' || c == 'E'; };
         if (1 == count_if(s.begin(), s.end(), isE)) {
             string t;
-            transform(s.begin(), s.end(), back_inserter(t), [](auto c) { return c != 'e' && c != 'E' ? c : ' '; });
+            transform(s.begin(), s.end(), back_inserter(t), [&](auto c) { return !isE(c) ? c : ' '; });
             stringstream ss{ t };
             for (string word; ss >> word; A.emplace_back(word));
         }
