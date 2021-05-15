@@ -1,40 +1,3 @@
-# C++ Boost Demonstration
-
-Observe how concise C++ code can be expressed with [boost](https://www.boost.org/).  Also observe how the header only templates "explode" out, ie. I included 2 header files and there's a whole bunch of header files pulled by `bcp` for static compilation.
-
-## OSX Build instructions
-
-1. Install Boost and CMake via [Homebrew](https://brew.sh/)
-```
-brew install boost cmake
-```
-
-2. Pull Boost Dependencies
-
-Run the `boost.sh` script which has a hardcoded boost install directory (this may vary depending on where boost is istalled)
-```
-#!/usr/bin/env bash
-set -Eexo pipefail
-
-mkdir -p ./boost
-
-bcp                                                  \
-  algorithm/string/split.hpp                         \
-  boost/algorithm/string/classification.hpp          \
-  ./boost                                            \
-  --boost=/usr/local/Cellar/boost/1.73.0/include
-```
-
-3. Build and Execute
-```
-cmake --build ./cmake-build-debug --target 65_valid_number -- -j 16
-```
-
-## 65. Valid Number
-* [Question](https://leetcode.com/problems/valid-number/)
-* [Answer](https://leetcode.com/problems/valid-number/discuss/1209666/A-few-solutions)
-
-```cpp
 /*
  * 65. Valid Number
  *
@@ -98,10 +61,9 @@ public:
 
 int main() {
     Solution solution;
-    VS A{ "2", "0089", "-0.1", "+3.14", "4.", "-.9", "2e10", "-90E3", "3e+7", "+6e-1", "53.5e93", "-123.456e789" },
+    VS A{ "2", "0089", "-0.1", "+3.14", "4.", "-.9", "2e10", "-90E3", "3e+7", "+6e-1", "53.5e93", "-123.456e789", "x" },
        B{ "abc", "1a", "1e", "e3", "99e2.5", "--6", "-+3", "95a54e53", "e.7e5" };
     for (auto& s: A) assert( solution.isNumber(s));
     for (auto& s: B) assert(!solution.isNumber(s));
     return 0;
 }
-```
