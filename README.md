@@ -75,7 +75,7 @@ public:
         auto isOK = [&](auto& s, auto allowed) {
             auto i = indexAfterSign(s);
             auto t = s.substr(i);
-            if (1 < i || t.empty() || t == ".")  // 💩 sanity check
+            if (1 < i || t.empty() || t == ".")  // 💩 sanity check: 1 < i ensures there is at-most one + or - sign
                 return false;
             return count_if(t.begin(), t.end(), [](auto c){ return c == '.'; }) <= allowed
                 && all_of(t.begin(), t.end(), [](auto c){ return isdigit(c) || c == '.'; });
