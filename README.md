@@ -2,6 +2,8 @@
 
 Observe how concise C++ code can be expressed with [boost](https://www.boost.org/).  Also observe how the header only templates "explode" out, ie. I included 2 header files and there's a whole bunch of header files pulled by `bcp` for static compilation.
 
+![](awesome.png)
+
 ## OSX Build instructions
 
 1. Install Boost and CMake via [Homebrew](https://brew.sh/)
