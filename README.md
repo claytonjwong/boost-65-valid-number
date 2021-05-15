@@ -11,7 +11,12 @@ brew install boost cmake
 
 2. Pull Boost Dependencies
 
-Run the `boost.sh` script which has a hardcoded boost install directory (this may vary depending on where boost is istalled)
+Run the `boost.sh` script with the env var `BOOST_INCLUDES` set to the path where [homebrew](https://github.com/Homebrew/brew) placed the [boost](https://www.boost.org/) include files.
+```
+env BOOST_INCLUDES=/usr/local/Cellar/boost/1.73.0/include ./boost.sh
+```
+
+This script uses the [BCP Tool](https://github.com/boostorg/bcp) to pull in brew dependencies:
 ```
 #!/usr/bin/env bash
 set -Eexo pipefail
@@ -22,7 +27,7 @@ bcp                                                  \
   algorithm/string/split.hpp                         \
   boost/algorithm/string/classification.hpp          \
   ./boost                                            \
-  --boost=/usr/local/Cellar/boost/1.73.0/include
+  --boost=$BOOST_INCLUDES
 ```
 
 3. Build and Execute
